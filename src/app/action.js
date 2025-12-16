@@ -151,3 +151,5 @@ export async function signOut() {
   revalidatePath("/");
   redirect("/");
 }
+
+// exe.curl X POST https://dealdrop-platform.vercel.app/api/cron/check-prices \ -H 'Authorization: Bearer 5b8f54273cde45dd5e32574d1a85422e28a0c2d4168544e32ef401629226dc35' \
