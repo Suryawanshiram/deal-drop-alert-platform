@@ -13,7 +13,7 @@ export async function sendPriceDropAlert(
     const percentageDrop = ((priceDrop / oldPrice) * 100).toFixed(1);
 
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL,
+      from: process.env.DEV_EMAIL,
       to: userEmail,
       subject: `🎉 Price Drop Alert: ${product.name}`,
       html: `
@@ -32,16 +32,16 @@ export async function sendPriceDropAlert(
             <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 10px 10px;">
               
               ${
-                product.image_url
+                product?.image_url
                   ? `
                 <div style="text-align: center; margin-bottom: 20px;">
-                  <img src="${product.image_url}" alt="${product.name}" style="max-width: 200px; height: auto; border-radius: 8px; border: 1px solid #e5e7eb;">
+                  <img src="${product?.image_url}" alt="${product?.name}" style="max-width: 200px; height: auto; border-radius: 8px; border: 1px solid #e5e7eb;">
                 </div>
               `
                   : ""
               }
               
-              <h2 style="color: #1f2937; margin-top: 0;">${product.name}</h2>
+              <h2 style="color: #1f2937; margin-top: 0;">${product?.name}</h2>
               
               <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; border-radius: 4px;">
                 <p style="margin: 0; font-size: 14px; color: #92400e;">
@@ -54,7 +54,7 @@ export async function sendPriceDropAlert(
                   <td style="padding: 10px; background: #f9fafb; border-radius: 4px;">
                     <div style="font-size: 14px; color: #6b7280;">Previous Price</div>
                     <div style="font-size: 20px; color: #9ca3af; text-decoration: line-through;">
-                      ${product.currency} ${oldPrice.toFixed(2)}
+                      ${product?.currency} ${oldPrice?.toFixed(2)}
                     </div>
                   </td>
                 </tr>
@@ -62,7 +62,7 @@ export async function sendPriceDropAlert(
                   <td style="padding: 10px;">
                     <div style="font-size: 14px; color: #6b7280;">Current Price</div>
                     <div style="font-size: 32px; color: #FA5D19; font-weight: bold;">
-                      ${product.currency} ${newPrice.toFixed(2)}
+                      ${product?.currency} ${newPrice.toFixed(2)}
                     </div>
                   </td>
                 </tr>
@@ -70,14 +70,14 @@ export async function sendPriceDropAlert(
                   <td style="padding: 10px; background: #dcfce7; border-radius: 4px;">
                     <div style="font-size: 14px; color: #166534;">You Save</div>
                     <div style="font-size: 24px; color: #16a34a; font-weight: bold;">
-                      ${product.currency} ${priceDrop.toFixed(2)}
+                      ${product?.currency} ${priceDrop.toFixed(2)}
                     </div>
                   </td>
                 </tr>
               </table>
               
               <div style="text-align: center; margin: 30px 0;">
-                <a href="${product.url}" 
+                <a href="${product?.url}" 
                    style="display: inline-block; background: #FA5D19; color: white; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">
                   View Product →
                 </a>
